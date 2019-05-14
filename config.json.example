@@ -1,0 +1,11 @@
+{
+  "prefix": "!",
+  "ownerID": "[YOURDISCORDNAME]#1234",
+  "discordToken": "[YOUR DISCORD TOKEN]",
+	"twitchToken" : "[YOUR TWITCH TOKEN]",
+	"twitchChannels" : [
+    { "channelName" : "[TWITCH CHANNEL NAME 1]", "chatID" : "[DISCORD CHAT CHANNEL ID]", "message" : "[MESSAGE YOU WANT TO SEND]", "enabled" : true }
+    { "channelName" : "[TWITCH CHANNEL NAME 2]", "chatID" : "[DISCORD CHAT CHANNEL ID]", "message" : "[MESSAGE YOU WANT TO SEND]", "enabled" : true }
+    { "channelName" : "[TWITCH CHANNEL NAME 3]", "chatID" : "[DISCORD CHAT CHANNEL ID]", "message" : "[MESSAGE YOU WANT TO SEND]", "enabled" : true }
+  ]
+}

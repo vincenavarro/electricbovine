@@ -1,0 +1,31 @@
+{
+  "name": "ElectricBovine",
+  "description": "Your Sassy Robot Cow Companion",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Vince Navarro",
+  "keywords": [
+    "discord",
+    "bot",
+    "twitch",
+    "dice"
+  ],
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "format": "yarn prettier --trailing-comma es5 --single-quote --print-width 500  --jsx-single-quote --write \"{index.js,command/*.js,event/*.js,function/*.js}\""
+  },
+  "prettier" : {
+    "trailingComma" : "es5",
+    "singleQuote" : true,
+    "printWidth": 500,
+    "jsxSingleQuote": true
+  },
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "moment": "^2.24.0",
+    "node-fetch": "^2.5.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.17.0"
+  }
+}
