@@ -21,10 +21,10 @@ Electric Bovine is a very small chat bot using [DiscordJS](https://github.com/di
 ### Current ⚡
 
 * `!ping` Roundtrip time between bot and server.
+* Passive - Announces when the configured Twitch streams have gone live to the requested channel.
 
 ### Planned 🔌
 
-* Announces when the configured Twitch streams have gone live to the requested channel.
 * `!help` Help/Commmands list
 * `!roll` Rolls (1d6, 2d10, etc)
 * `!kill` Disables bot restricted to Admin users.

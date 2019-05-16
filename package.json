@@ -1,7 +1,7 @@
 {
   "name": "ElectricBovine",
   "description": "Your Sassy Robot Cow Companion",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "main": "index.js",
   "author": "Vince Navarro",
   "keywords": [
@@ -14,9 +14,9 @@
   "scripts": {
     "format": "yarn prettier --trailing-comma es5 --single-quote --print-width 500  --jsx-single-quote --write \"{index.js,command/*.js,event/*.js,function/*.js}\""
   },
-  "prettier" : {
-    "trailingComma" : "es5",
-    "singleQuote" : true,
+  "prettier": {
+    "trailingComma": "es5",
+    "singleQuote": true,
     "printWidth": 500,
     "jsxSingleQuote": true
   },

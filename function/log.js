@@ -10,13 +10,13 @@ exports.log = (content, type = 'log') => {
       return console.log(`${timestamp} ${type.toUpperCase()} ${content} `);
     }
     case 'warning': {
-      return console.log(`${timestamp} ${type.toUpperCase()} ${content} `);
+      return console.warn(`${timestamp} ${type.toUpperCase()} ${content} `);
     }
     case 'error': {
-      return console.log(`${timestamp} ${type.toUpperCase()} ${content} `);
+      return console.error(`${timestamp} ${type.toUpperCase()} ${content} `);
     }
     case 'debug': {
-      return console.log(`${timestamp} ${type.toUpperCase()} ${content} `);
+      return console.debug(`${timestamp} ${type.toUpperCase()} ${content} `);
     }
     case 'command': {
       return console.log(`${timestamp} ${type.toUpperCase()} ${content}`);

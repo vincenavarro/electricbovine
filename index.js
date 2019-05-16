@@ -13,6 +13,7 @@ client.config = require('./config.json');
 
 // Add global functions like crash handling, logging, etc.
 require('./function/global.js')(client);
+require('./function/twitch.js')(client);
 
 const startBot = async () => {
   client.logger.log(`Loading bot components.`);
@@ -36,7 +37,9 @@ const startBot = async () => {
   });
 
   // Make it so...
-  client.login(client.config.discordToken);
+  client.login(client.config.discordToken).then(() => {
+    if (client.config.twitch.enabled) client.twitchCheck(client.config.twitch.token, client.config.twitch.channels);
+  });
 };
 
 startBot();
