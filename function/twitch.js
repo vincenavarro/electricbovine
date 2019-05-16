@@ -35,23 +35,22 @@ module.exports = client => {
     const nextTimer = rate => setTimeout(client.twitchCheckTimer, rate, token, channel);
 
     client
-        .twitchGetStream(token, channel.channelName)
-        .then(response => {
-          if (response) {
-            channel.stream = response;
-            client.emit('announce', channel);
-            client.logger.log(`TwitchCheck found ${channel.channelName} live, announcing.`);
-            nextTimer(timerSlow);
-          } else if (response == rateLimitMessage) {
-            nextTimer(timerSlow*4);
-            client.logger.warn(`TwitchCheck is being rate limited. Increasing wait time by 4X.`);
-          } else {
-            nextTimer(timerFast);
-            //client.logger.log(`TwitchCheck did not find ${channel.channelName} live, will continue search.`);
-          }
-        })
-        .catch(error => client.logger.error(`Error ocurred while monitoring ${channel.channelName}. Timer will be halted until reboot. Status: ${error}`));
-
+      .twitchGetStream(token, channel.channelName)
+      .then(response => {
+        if (response) {
+          channel.stream = response;
+          client.emit('announce', channel);
+          client.logger.log(`TwitchCheck found ${channel.channelName} live, announcing.`);
+          nextTimer(timerSlow);
+        } else if (response == rateLimitMessage) {
+          nextTimer(timerSlow * 4);
+          client.logger.warn(`TwitchCheck is being rate limited. Increasing wait time by 4X.`);
+        } else {
+          nextTimer(timerFast);
+          //client.logger.log(`TwitchCheck did not find ${channel.channelName} live, will continue search.`);
+        }
+      })
+      .catch(error => client.logger.error(`Error ocurred while monitoring ${channel.channelName}. Timer will be halted until reboot. Status: ${error}`));
   };
 
   client.twitchGetStream = async (token, channel) => {

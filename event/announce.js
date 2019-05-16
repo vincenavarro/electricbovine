@@ -18,10 +18,16 @@ module.exports = (client, channel) => {
     // Set the main content of the embed
     .setDescription(`Watch here ${stream.channel.url}! ${message}`)
     .attachFiles(['./image/bomb.png'])
-    .setFooter(`This message will self-destruct ${moment().add(12, 'hours').calendar().toLowerCase()}.`, `attachment://bomb.png`);
+    .setFooter(
+      `This message will self-destruct ${moment()
+        .add(12, 'hours')
+        .calendar()
+        .toLowerCase()}.`,
+      `attachment://bomb.png`
+    );
 
   client.channels
     .get(discordChannel)
     .send(embed)
-    .then(msg => msg.delete(1000*60*60*12));
+    .then(msg => msg.delete(1000 * 60 * 60 * 12));
 };
