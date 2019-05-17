@@ -3,7 +3,7 @@ const moment = require('moment');
 
 module.exports = (client, channel) => {
   const { enabled, channelName, category, message, stream = '' } = channel;
-  const discordChannel = client.config.announce[category];
+  const discordChannel = client.config.channelID[category];
 
   //https://discord.js.org/#/docs/main/stable/class/RichEmbed
   const embed = new RichEmbed()
