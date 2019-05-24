@@ -1,64 +1,48 @@
-// Load main discord library.
+// Load main discord library and other core components.
 const Discord = require('discord.js');
 
-// Load other useful components.
-const { promisify } = require('util');
-const readdir = promisify(require('fs').readdir);
-
 // Setup the base client, logger, and configuration.
+// See README.md for config.json formatting information.
 const client = new Discord.Client();
 client.logger = require('./function/log');
 client.config = require('./config.json');
-// See README.md for log formatting information.
 
-// Add global functions like crash handling, logging, etc.
-require('./function/global.js')(client);
-require('./function/twitch.js')(client);
+// Add global functions like crash handling, event loading, etc.
+require('./function/core.js')(client);
 
 const startBot = async () => {
   client.logger.log(`Electric Bovine starting.`);
 
-  // Commands...
-  const commandFiles = await readdir('./command/');
-  let commandsLoaded = '', commandsError = '';
-  commandFiles.forEach(commandFile => {
-    if (!commandFile.endsWith('.js')) return;
-    const response = client.loadCommand(commandFile);
-    // If an error is reported add it to the error list, otherwise loaded.
-    response ? commandsError += ` ${response}` : commandsLoaded += ` ${commandFile}`;
+  client.loadAllCommands('./command/').then(results => {
+    client.logger.log(`${results.loaded.length} commands loaded: ${results.loaded.join(', ')}`);
+    if (results.error.length > 0) client.logger.error(`Error loading command(s): ${results.error.join(', ')}`);
   });
-  client.logger.log(`${commandFiles.length} commands loaded:${commandsLoaded}`);
-  if (commandsError !== '') client.logger.error(`Error loading:${commandsError}`);
 
-  // Events...
-  const eventFiles = await readdir('./event/');
-  let eventsLoaded = '', eventsError = '';
-  eventFiles.forEach(eventFile => {
-    if (!eventFile.endsWith('.js')) return;
-    const response = client.loadEvent(eventFile);
-    response ? eventsError += ` ${response}` : eventsLoaded += ` ${eventFile}`;
+  client.loadAllEvents('./event/').then(results => {
+    client.logger.log(`${results.loaded.length} events loaded: ${results.loaded.join(', ')}`);
+    if (results.error.length > 0) client.logger.error(`Error loading event(s): ${results.error.join(', ')}`);
   });
-  client.logger.log(`${eventFiles.length} events loaded:${eventsLoaded}`);
-  if (eventsError !== '') client.logger.error(`Error loading:${eventsError}`);
 
   // Make it so...
   client.login(client.config.discordToken).then(() => {
-
     // Set bot status.
-      // Make the bot "play the game" which is the help command with default prefix.
-  client.user.setActivity(`Milk`);
-  client.user.setStatus('online');
-  client.user.setPresence({
-    game: {
-      name: 'Milk',
-      type: 'STREAMING', // PLAYING, STREAMING, LISTENING, WATCHING
-      url: 'https://twitch.tv/overwatchleague',
-    },
-    status: 'idle',
-  });
+    // Make the bot "play the game" which is the help command with default prefix.
+    client.user.setActivity(`Milk`);
+    client.user.setStatus('online');
+    client.user.setPresence({
+      game: {
+        name: 'Milk',
+        type: 'STREAMING', // PLAYING, STREAMING, LISTENING, WATCHING
+        url: 'https://twitch.tv/overwatchleague',
+      },
+      status: 'idle',
+    });
 
-  // Start TwitchCHeck
-    if (client.config.twitch.enabled) client.twitchCheck(client.config.twitch.token, client.config.twitch.channels);
+    // Start TwitchCHeck
+    if (client.config.twitch.enabled) {
+      require('./function/twitch.js')(client);
+      client.twitchCheck(client.config.twitch.token, client.config.twitch.channels);
+    }
   });
 };
 
