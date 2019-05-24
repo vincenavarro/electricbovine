@@ -31,6 +31,8 @@ exports.log = (content, type = 'log') => {
 
 exports.error = (...args) => this.log(...args, 'error');
 
+exports.ready = (...args) => this.log(...args, 'ready');
+
 exports.warning = (...args) => this.log(...args, 'warning');
 
 exports.debug = (...args) => this.log(...args, 'debug');

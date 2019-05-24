@@ -16,28 +16,48 @@ require('./function/global.js')(client);
 require('./function/twitch.js')(client);
 
 const startBot = async () => {
-  client.logger.log(`Loading bot components.`);
+  client.logger.log(`Electric Bovine starting.`);
 
   // Commands...
   const commandFiles = await readdir('./command/');
-  client.logger.log(`${commandFiles.length} commands found.`);
+  let commandsLoaded = '', commandsError = '';
   commandFiles.forEach(commandFile => {
     if (!commandFile.endsWith('.js')) return;
     const response = client.loadCommand(commandFile);
-    if (response) console.log(response);
+    // If an error is reported add it to the error list, otherwise loaded.
+    response ? commandsError += ` ${response}` : commandsLoaded += ` ${commandFile}`;
   });
+  client.logger.log(`${commandFiles.length} commands loaded:${commandsLoaded}`);
+  if (commandsError !== '') client.logger.error(`Error loading:${commandsError}`);
 
   // Events...
   const eventFiles = await readdir('./event/');
-  client.logger.log(`${eventFiles.length} events found.`);
+  let eventsLoaded = '', eventsError = '';
   eventFiles.forEach(eventFile => {
     if (!eventFile.endsWith('.js')) return;
     const response = client.loadEvent(eventFile);
-    if (response) console.log(response);
+    response ? eventsError += ` ${response}` : eventsLoaded += ` ${eventFile}`;
   });
+  client.logger.log(`${eventFiles.length} events loaded:${eventsLoaded}`);
+  if (eventsError !== '') client.logger.error(`Error loading:${eventsError}`);
 
   // Make it so...
   client.login(client.config.discordToken).then(() => {
+
+    // Set bot status.
+      // Make the bot "play the game" which is the help command with default prefix.
+  client.user.setActivity(`Milk`);
+  client.user.setStatus('online');
+  client.user.setPresence({
+    game: {
+      name: 'Milk',
+      type: 'STREAMING', // PLAYING, STREAMING, LISTENING, WATCHING
+      url: 'https://twitch.tv/overwatchleague',
+    },
+    status: 'idle',
+  });
+
+  // Start TwitchCHeck
     if (client.config.twitch.enabled) client.twitchCheck(client.config.twitch.token, client.config.twitch.channels);
   });
 };
