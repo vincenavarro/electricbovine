@@ -7,6 +7,13 @@ module.exports = async (client, message) => {
   // Ignore if message is from a bot or doesn't start with the prefix.
   if (message.author.bot || message.content.indexOf(prefix) !== 0) return;
 
+  // If the bot is disabled on this channel, send the user a message as a reminder.
+  // If (message.channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')) console.log('I can speech.');
+  if (message.channel.type !== 'dm' && !message.channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')) {
+    message.author.send(`Sorry I can see your request but I am not allowed to respond in that channel! You can try again here or in another channel. Type \`${client.config.prefix}help\` for more info. Your request: : \`${message.content}\``);
+    return;
+  }
+
   // Split command into command and arguments.
   const args = message.content
     .slice(prefix.length)
