@@ -46,4 +46,11 @@ const startBot = async () => {
   });
 };
 
+// TODO: Handle what to do when a bot does not have permissions to speak in a channel.
+process.on('unhandledRejection', (reason, p) => {
+  console.error('Unhandled Rejection at: Promise', p, 'reason:', reason.stack);
+  //client.logger.error('Unhandled Rejection at: Promise', p, 'reason:', reason.stack);
+  // application specific logging, throwing an error, or other logic here
+});
+
 startBot();

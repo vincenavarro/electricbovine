@@ -1,7 +1,7 @@
 {
   "name": "ElectricBovine",
   "description": "Your Sassy Robot Cow Companion",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "author": "Vince Navarro",
   "keywords": [
