@@ -1,5 +1,3 @@
-const DiceRoller = require('dice-roller-dnd');
-
 exports.run = async (client, message, args, level) => {
   const limits = {
     maxSets: 3,
