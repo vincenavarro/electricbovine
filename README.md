@@ -22,15 +22,15 @@ Electric Bovine is a very small chat bot using [DiscordJS](https://github.com/di
 
 * `!help` Basic help / command list.
 * `!ping` Roundtrip time between bot and server.
+* `!roll` Rolls (1d6, 2d10, etc)
 * Passive - Announces when configured Twitch streams have gone live.
 
 ### Planned 🔌
 
-* `!roll` Rolls (1d6, 2d10, etc)
 * `!kill` Disables bot restricted to Admin users.
 * `!file` file request
 * `!cow` or `!moo` posts a cow gif
-* `!smut` Writes a 50shades adlib
+* `!write` Writes a shades adlib
 
 ## Install and Run
 
