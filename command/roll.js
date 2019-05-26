@@ -23,19 +23,19 @@ exports.run = async (client, message, args, level) => {
     }
 
     requests.forEach(request => {
-      const splitRequest = request.toLowerCase().split('d');
+      const [quantity, diceSize] = request.toLowerCase().split('d');
 
-      if (splitRequest.length != 2 || isNaN(splitRequest[0]) || isNaN(splitRequest[1]) || splitRequest[0] == '' || splitRequest[1] == '') {
+      if (request.toLowerCase().split('d').length != 2 || isNaN(quantity) || isNaN(diceSize) || quantity == '' || diceSize == '') {
         message.channel.send(rollMessage.badFormat);
         isValid = false;
       }
 
-      if (splitRequest[1] > limits.maxDiceSize) {
+      if (diceSize > limits.maxDiceSize) {
         message.channel.send(rollMessage.exceedMaxDiceSize);
         isValid = false;
       }
 
-      if (splitRequest[0] > limits.maxDicePerSet) {
+      if (quantity > limits.maxDicePerSet) {
         message.channel.send(rollMessage.exceedMaxDicePerSet);
         isValid = false;
       }
