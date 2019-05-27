@@ -25,7 +25,7 @@ exports.run = async (client, message, args, level) => {
     requests.forEach(request => {
       const [quantity, diceSize] = request.toLowerCase().split('d');
 
-      if (request.toLowerCase().split('d').length != 2 || isNaN(quantity) || isNaN(diceSize) || quantity == '' || diceSize == '') {
+      if (request.toLowerCase().split('d').length != 2 || isNaN(quantity) || isNaN(diceSize) || quantity >= 1 || diceSize >= 1) {
         message.channel.send(rollMessage.badFormat);
         isValid = false;
       }
