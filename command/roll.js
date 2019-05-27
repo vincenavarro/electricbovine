@@ -5,7 +5,7 @@ exports.run = async (client, message, args, level) => {
     maxDiceSize: 100,
   };
 
-  const rollExample = `\`${client.config.prefix}!roll 5d20 d6 2d100\``;
+  const rollExample = `\`${client.config.prefix}roll 5d20 d6 2d100\``;
 
   const rollMessage = {
     badFormat: `Invalid format. Use ${rollExample}.`,
@@ -25,7 +25,7 @@ exports.run = async (client, message, args, level) => {
     requests.forEach(request => {
       const [quantity, diceSize] = request.toLowerCase().split('d');
 
-      if (request.toLowerCase().split('d').length != 2 || isNaN(quantity) || isNaN(diceSize) || quantity >= 1 || diceSize >= 1) {
+      if (request.toLowerCase().split('d').length != 2 || isNaN(quantity) || isNaN(diceSize) || quantity < 1 || diceSize < 1) {
         message.channel.send(rollMessage.badFormat);
         isValid = false;
       }
