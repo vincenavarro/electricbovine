@@ -1,11 +1,18 @@
 {
-  "prefix": "!",
-  "ownerID": "[YOURDISCORDNAME]#1234",
-  "discordToken": "[YOUR DISCORD TOKEN]",
-	"twitchToken" : "[YOUR TWITCH TOKEN]",
-	"twitchChannels" : [
-    { "channelName" : "[TWITCH CHANNEL NAME 1]", "chatID" : "[DISCORD CHAT CHANNEL ID]", "message" : "[MESSAGE YOU WANT TO SEND]", "enabled" : true }
-    { "channelName" : "[TWITCH CHANNEL NAME 2]", "chatID" : "[DISCORD CHAT CHANNEL ID]", "message" : "[MESSAGE YOU WANT TO SEND]", "enabled" : true }
-    { "channelName" : "[TWITCH CHANNEL NAME 3]", "chatID" : "[DISCORD CHAT CHANNEL ID]", "message" : "[MESSAGE YOU WANT TO SEND]", "enabled" : true }
-  ]
+	"prefix": "!",
+	"ownerID": "[YOUR DISCORD ID #]",
+	"discordToken": "[DISCORD API TOKEN]",
+	"channelID" : {
+			"games" : "[CHANNEL ID]",
+			"art" : "[CHANNEL ID]",
+			"etc" : "[CHANNEL ID]",
+	},
+"twitch" : {
+	"enabled" : true,
+	"token" : "[TWITCH API TOKEN]",
+	"channels" : [
+			{ "enabled" : true, "channelName" : "[TWITCH CHANNEL NAME 1]",  "category" : "games", "message" : "[TWITCH CHANNEL ANNOUNCE MESSAGE 1]"},
+			{ "enabled" : true, "channelName" : "[TWITCH CHANNEL NAME 2]", "category" : "art", "message" : "[TWITCH CHANNEL ANNOUNCE MESSAGE 2]"},
+			{ "enabled" : true, "channelName" : "[TWITCH CHANNEL NAME 3]", "category" : "etc", "message" : "[TWITCH CHANNEL ANNOUNCE MESSAGE 3]"}			]
+	}
 }
