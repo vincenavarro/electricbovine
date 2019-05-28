@@ -80,7 +80,7 @@ exports.run = async (client, message, args, level) => {
       return args.length > 1 || quantity > 1 ? `${args.length != 1 ? '\n' : ''}**${arg}:** ${resultsWithCrits.join(', ')} - Total: **${resultsTotal}**${resultsTotalBonus}` : `**${resultsWithCrits}**${resultsTotalBonus}`;
     });
 
-    message.channel.send(`***${message.author.username} rolls*** :game_die: ${resultsMessage.join('')}`);
+    message.channel.send(`***${message.channel.type !== 'dm' && message.member.nickname ? message.member.nickname : message.author.username} rolls*** :game_die: ${resultsMessage.join('')}`);
   }
 };
 

@@ -21,7 +21,7 @@ exports.run = (client, message, args, level) => {
 
   //console.log(message);
   message.author.send(embed);
-  if (message.channel.type !== 'dm') message.channel.send(`I sent you a message ${message.author.username}! Slide into the DMs! 💕😘💋💕`);
+  if (message.channel.type !== 'dm') message.channel.send(`I sent you a message ${message.channel.type !== 'dm' && message.member.nickname ? message.member.nickname : message.author.username}! Slide into the DMs! 💕😘💋💕`);
 };
 
 exports.conf = {
