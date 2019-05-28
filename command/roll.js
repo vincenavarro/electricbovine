@@ -77,7 +77,7 @@ exports.run = async (client, message, args, level) => {
       const resultsWithCrits = results.map(result => (result == diceSize ? `__${result}__` : result));
 
       // Returns message depending on if there were more than once dies or not.
-      return args.length > 1 || quantity > 1 ? `${args.length != 1 ? '\n' : ''}**${arg}:** ${resultsWithCrits.join(', ')} - Total: **${resultsTotal}**${resultsTotalBonus}` : `**${resultsWithCrits}${resultsTotalBonus}**`;
+      return args.length > 1 || quantity > 1 ? `${args.length != 1 ? '\n' : ''}**${arg}:** ${resultsWithCrits.join(', ')} - Total: **${resultsTotal}**${resultsTotalBonus}` : `**${resultsWithCrits}**${resultsTotalBonus}`;
     });
 
     message.channel.send(`***${message.author.username} rolls*** :game_die: ${resultsMessage.join('')}`);
