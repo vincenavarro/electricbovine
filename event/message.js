@@ -10,7 +10,11 @@ module.exports = async (client, message) => {
   // If the bot is disabled on this channel, send the user a message as a reminder.
   // If (message.channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')) console.log('I can speech.');
   if (message.channel.type !== 'dm' && !message.channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')) {
-    message.author.send(`Sorry I can see your request but I am not allowed to respond in that channel! You can try again here or in another channel. Type \`${client.config.prefix}help\` for more info. Your request: : \`${message.content}\``);
+    message.author.send(
+      `Sorry I can see your request but I am not allowed to respond in that channel! You can try again here or in another channel. Type \`${
+        client.config.prefix
+      }help\` for more info. Your request: : \`${message.content}\``
+    );
     return;
   }
 

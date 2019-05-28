@@ -50,7 +50,11 @@ module.exports = client => {
           //client.logger.log(`TwitchCheck did not find ${channel.channelName} live, will continue search.`);
         }
       })
-      .catch(error => client.logger.error(`Error ocurred while monitoring ${channel.channelName}. Timer will be halted until reboot. Status: ${error}`));
+      .catch(error =>
+        client.logger.error(
+          `Error ocurred while monitoring ${channel.channelName}. Timer will be halted until reboot. Status: ${error}`
+        )
+      );
   };
 
   client.twitchGetStream = async (token, channel) => {

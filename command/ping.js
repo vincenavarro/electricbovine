@@ -1,6 +1,8 @@
 exports.run = async (client, message, args, level) => {
   const content = await message.channel.send('Calculating...');
-  content.edit(`Discord Chat ${content.createdTimestamp - message.createdTimestamp}ms. Discord API ${Math.round(client.ping)}ms.`);
+  content.edit(
+    `Discord Chat ${content.createdTimestamp - message.createdTimestamp}ms. Discord API ${Math.round(client.ping)}ms.`
+  );
 };
 
 exports.conf = {

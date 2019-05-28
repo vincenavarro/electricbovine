@@ -25,7 +25,13 @@ exports.run = async (client, message, args, level) => {
     requests.forEach(request => {
       const [quantity, diceSize] = request.toLowerCase().split('d');
 
-      if (request.toLowerCase().split('d').length != 2 || isNaN(quantity) || isNaN(diceSize) || quantity < 1 || diceSize < 1) {
+      if (
+        request.toLowerCase().split('d').length != 2 ||
+        isNaN(quantity) ||
+        isNaN(diceSize) ||
+        quantity < 1 ||
+        diceSize < 1
+      ) {
         message.channel.send(rollMessage.badFormat);
         isValid = false;
       }
@@ -73,14 +79,27 @@ exports.run = async (client, message, args, level) => {
       const resultsTotal = results.reduce((a, b) => a + b, 0);
 
       // Adds flair, enjoy the 🍝.
-      const resultsTotalBonus = resultsTotal / (quantity * diceSize) >= 0.9 ? ` <:matt:441663397629657089>` : resultsTotal / (quantity * diceSize) <= 0.1 || resultsTotal == 1 ? ` <:shock:577835928186257466>` : ``;
+      const resultsTotalBonus =
+        resultsTotal / (quantity * diceSize) >= 0.9
+          ? ` <:matt:441663397629657089>`
+          : resultsTotal / (quantity * diceSize) <= 0.1 || resultsTotal == 1
+          ? ` <:shock:577835928186257466>`
+          : ``;
       const resultsWithCrits = results.map(result => (result == diceSize ? `__${result}__` : result));
 
       // Returns message depending on if there were more than once dies or not.
-      return args.length > 1 || quantity > 1 ? `${args.length != 1 ? '\n' : ''}**${arg}:** ${resultsWithCrits.join(', ')} - Total: **${resultsTotal}**${resultsTotalBonus}` : `**${resultsWithCrits}**${resultsTotalBonus}`;
+      return args.length > 1 || quantity > 1
+        ? `${args.length != 1 ? '\n' : ''}**${arg}:** ${resultsWithCrits.join(
+            ', '
+          )} - Total: **${resultsTotal}**${resultsTotalBonus}`
+        : `**${resultsWithCrits}**${resultsTotalBonus}`;
     });
 
-    message.channel.send(`***${message.channel.type !== 'dm' && message.member.nickname ? message.member.nickname : message.author.username} rolls*** :game_die: ${resultsMessage.join('')}`);
+    message.channel.send(
+      `***${
+        message.channel.type !== 'dm' && message.member.nickname ? message.member.nickname : message.author.username
+      } rolls*** :game_die: ${resultsMessage.join('')}`
+    );
   }
 };
 
