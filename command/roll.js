@@ -73,7 +73,7 @@ exports.run = async (client, message, args, level) => {
       const resultsTotal = results.reduce((a, b) => a + b, 0);
 
       // Adds flair, enjoy the 🍝.
-      const resultsTotalBonus = resultsTotal / (quantity * diceSize) >= 0.9 ? ` :matt:` : resultsTotal / (quantity * diceSize) <= 0.1 || resultsTotal == 1 ? ` :shock:` : ``;
+      const resultsTotalBonus = resultsTotal / (quantity * diceSize) >= 0.9 ? ` <:matt:441663397629657089>` : resultsTotal / (quantity * diceSize) <= 0.1 || resultsTotal == 1 ? ` <:shock:577835928186257466>` : ``;
       const resultsWithCrits = results.map(result => (result == diceSize ? `__${result}__` : result));
 
       // Returns message depending on if there were more than once dies or not.
