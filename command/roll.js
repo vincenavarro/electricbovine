@@ -11,17 +11,18 @@ exports.run = async (client, message, args, level) => {
     badFormat: `Invalid format. Use ${rollExample}.`,
     exceedMaxSets: `Sorry, you may only roll ${limits.maxSets} sets of dice at a time.`,
     exceedMaxDiceSize: `Sorry the maximum dice size is ${limits.maxDiceSize}.`,
-    exceedMaxDicePerSet: `Sorry the maximum dice pet set is ${limits.maxDicePerSet}.`,
+    exceedMaxDicePerSet: `Sorry the maximum dice per set is ${limits.maxDicePerSet}.`,
   };
 
   const validRequest = (requests = args) => {
-    let isValid = true;
+
 
     if (requests.length > limits.maxSets) {
       message.channel.send(rollMessage.exceedMaxSets);
-      isValid = false;
+      return false;
     }
 
+    let isValid = true;
     requests.forEach(request => {
       const [quantity, diceSize] = request.toLowerCase().split('d');
 
@@ -34,16 +35,19 @@ exports.run = async (client, message, args, level) => {
       ) {
         message.channel.send(rollMessage.badFormat);
         isValid = false;
+        return;
       }
 
       if (diceSize > limits.maxDiceSize) {
         message.channel.send(rollMessage.exceedMaxDiceSize);
         isValid = false;
+        return;
       }
 
       if (quantity > limits.maxDicePerSet) {
         message.channel.send(rollMessage.exceedMaxDicePerSet);
         isValid = false;
+        return;
       }
     });
 
