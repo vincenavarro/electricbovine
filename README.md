@@ -2,6 +2,10 @@
 
 Your Sassy Discord Cow Companion
 
+## Migration Notice
+
+Twitch portions of this bot must be upgrade to v5 API by the end of August. [Read More](https://dev.twitch.tv/docs/v5/guides/migration/).
+
 ## Table of Contents
 
 * [Electric Bovine](#electric-bovine)
