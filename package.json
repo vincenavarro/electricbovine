@@ -15,7 +15,7 @@
     "format": "prettier --trailing-comma es5 --single-quote --print-width 120  --jsx-single-quote --write \"{index.js,command/*.js,event/*.js,function/*.js}\""
   },
   "dependencies": {
-    "discord.js": "^11.4.2",
+    "discord.js": "^12.5.0",
     "moment": "^2.24.0",
     "node-fetch": "^2.5.0"
   },
